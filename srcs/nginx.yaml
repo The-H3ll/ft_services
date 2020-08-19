@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app: nginx
+  name: nginx-service
+spec: 
+  ports: 
+    -
+      port: 80
+      port: 443
+  selector: 
+    app: nginx
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: nginx
+  name: nginx-deployment
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: nginx
+  template: 
+    metadata: 
+      labels: 
+        app: nginx
+    spec: 
+      containers: 
+        - 
+          image: nginx_service
+          name: nginx
+          imagePullPolicy: Never
