@@ -1,18 +1,41 @@
 FROM 	alpine
 
+ARG 	IP
+
 RUN 	apk update
 
-RUN	apk add vsftpd
+RUN		apk add vsftpd
 
-RUN	apk add lftp
+RUN  	apk add openssl
 
-COPY	vsftpd.conf	.
+COPY 	vsftpd.conf 	.
 
-COPY  test.sh   /test.sh
+COPY 	vsftpduserlist.conf  /etc/vsftpduserlist.conf
 
-RUN	cp vsftpd.conf	/etc/vsftpd/vsftpd.conf
+COPY	vsftpd.pem		.
 
-EXPOSE	21
+RUN 	mkdir /etc/certs
 
+RUN 	cp vsftpd.pem /etc/certs
 
-CMD	sh test.sh
+RUN  	cp vsftpd.conf /etc/vsftpd/vsftpd.conf
+
+RUN  	{ echo "labhairi"; echo "labhairi";} | adduser molabhai
+
+RUN 	mkdir /home/molabhai/ftp
+
+RUN 	chown nobody:nogroup /home/molabhai/ftp/
+
+RUN 	chmod a-w /home/molabhai/ftp/
+
+RUN 	mkdir /home/molabhai/ftp/files
+
+RUN 	chown molabhai:molabhai /home/molabhai/ftp/files
+
+COPY 	build.sh	/usr/sbin
+
+RUN 	chmod +x /usr/sbin/build.sh
+
+CMD 	sh /usr/sbin/build.sh
+
+EXPOSE 	21 35940 35941

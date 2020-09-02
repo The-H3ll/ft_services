@@ -6,7 +6,7 @@ RUN 	    apk add nginx
 
 RUN	        apk add openssl
 
-RUN	        apk add openrc --no-cache
+RUN	        apk add openrc
 
 RUN	adduser -D -g 'nginx' user
 

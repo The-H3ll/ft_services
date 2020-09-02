@@ -14,24 +14,34 @@ spec:
 
 ---
         
- apiVersion: apps/v1
- kind: Deployment
- metadata: 
-   labels: 
-     app: ftps
-   name: ftps-deployment
- spec: 
-   replicas: 1
-   selector: 
-     matchLabels: 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+     labels: 
        app: ftps
-   template: 
-     metadata: 
-       labels: 
+     name: ftps-deployment
+spec: 
+     replicas: 1
+     selector: 
+       matchLabels: 
          app: ftps
-     spec: 
-       containers: 
-         - 
-           image: ftps_service
-           name: ftps
-           imagePullPolicy: Never
+     template: 
+       metadata: 
+         labels: 
+           app: ftps
+       spec: 
+         containers: 
+           - 
+             image: ftps_service
+             name: ftps
+             imagePullPolicy: Never
+             env: 
+              - 
+               name: PASV_ADRESS
+               value: "172.17.0.6"
+              - 
+               name: PASV_MIN_PORT
+               value: "35940"
+              - 
+               name: PASV_MAX_PORT
+               value: "35941"
