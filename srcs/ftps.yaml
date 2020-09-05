@@ -6,8 +6,18 @@ metadata:
   name: ftps-service
 spec: 
   ports: 
-    -
-      port: 21
+       - port: 21
+         name: ftps-port
+         nodePort: 30100
+       - port: 20
+         name: port-ftps
+         nodePort: 30101
+       - port: 31110
+         name: ftps-passv-port
+         nodePort: 31110
+       - port: 31111
+         name: passv-ftps-port
+         nodePort: 31111
   selector: 
     app: ftps
   type: LoadBalancer
@@ -35,13 +45,7 @@ spec:
              image: ftps_service
              name: ftps
              imagePullPolicy: Never
-             env: 
-              - 
-               name: PASV_ADRESS
-               value: "172.17.0.6"
-              - 
-               name: PASV_MIN_PORT
-               value: "35940"
-              - 
-               name: PASV_MAX_PORT
-               value: "35941"
+             ports:
+              - containerPort: 21
+              - containerPort: 31110
+              - containerPort: 31111

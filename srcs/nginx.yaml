@@ -7,7 +7,6 @@ metadata:
 spec: 
   ports: 
     -
-      port: 80
       port: 443
   selector: 
     app: nginx
@@ -34,3 +33,6 @@ spec:
           image: nginx_service
           name: nginx
           imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+            - containerPort: 443

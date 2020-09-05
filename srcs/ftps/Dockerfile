@@ -1,7 +1,5 @@
 FROM 	alpine
 
-ARG 	IP
-
 RUN 	apk update
 
 RUN		apk add vsftpd
@@ -38,4 +36,4 @@ RUN 	chmod +x /usr/sbin/build.sh
 
 CMD 	sh /usr/sbin/build.sh
 
-EXPOSE 	21 35940 35941
+EXPOSE 	21  20 31110 31111
