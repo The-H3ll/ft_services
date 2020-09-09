@@ -10,8 +10,10 @@ minikube dashboard &
 
 # Building Dockerfile
 echo "Building Dockerfiles"
-docker build -t nginx_service ./srcs/nginx
-docker build -t ftps_service  ./srcs/ftps 
+docker build -t nginx_service       ./srcs/nginx
+docker build -t ftps_service        ./srcs/ftps 
+docker build -t mysql_service       ./srcs/mySql
+docker build -t wordpress_service   ./srcs/wordpress
 
 # Installing Metallb
 echo "Installing Metallb"
@@ -25,3 +27,5 @@ echo "Creating Services and Pods"
 kubectl create -f ./srcs/configMap.yaml
 kubectl create -f ./srcs/ftps.yaml
 kubectl create -f ./srcs/nginx.yaml
+kubectl create -f ./srcs/mysql.yaml
+kubectl create -f ./srcs/wordpress.yaml
