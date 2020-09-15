@@ -6,6 +6,8 @@ RUN     apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-cu
 
 RUN     apk add wget
 
+COPY    wp-config.php  .
+
 COPY    build.sh    .
 
 RUN     chmod +x build.sh

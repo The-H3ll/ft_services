@@ -10,7 +10,18 @@ spec:
       port: 3306
   selector: 
     app: mysql
-  type: LoadBalancer
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1.5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,3 +44,12 @@ spec:
           image: mysql_service
           name: mysql
           imagePullPolicy: Never
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql
+              mountPath: /var/lib/mysql
+      volumes:
+            - name: mysql
+              persistentVolumeClaim:
+                claimName: mysql-pvc

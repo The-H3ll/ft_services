@@ -1,14 +1,15 @@
 #! /bin/bash
 
 
-mkdir   /www
+mkdir -p /var/www/
 
-cd /www
+cd /var/www
 
 wget https://wordpress.org/latest.tar.gz
 
 tar -xvf latest.tar.gz
 
-cp wp-config.php  /www/wordpress/wp-config.php
+cd /
+cp wp-config.php  /var/www/wordpress/wp-config.php
 
-php -S 0.0.0.0:5050 -t /www/
+php -S 0.0.0.0:5050 -t /var/www/wordpress

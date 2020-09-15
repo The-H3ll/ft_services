@@ -14,6 +14,8 @@ docker build -t nginx_service       ./srcs/nginx
 docker build -t ftps_service        ./srcs/ftps 
 docker build -t mysql_service       ./srcs/mySql
 docker build -t wordpress_service   ./srcs/wordpress
+docker build -t phpmyadmin_service  ./srcs/phymyadmin
+
 
 # Installing Metallb
 echo "Installing Metallb"
@@ -29,3 +31,4 @@ kubectl create -f ./srcs/ftps.yaml
 kubectl create -f ./srcs/nginx.yaml
 kubectl create -f ./srcs/mysql.yaml
 kubectl create -f ./srcs/wordpress.yaml
+kubectl create -f ./srcs/phpmyadmin.yaml

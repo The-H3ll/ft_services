@@ -1,7 +1,5 @@
 #! bin/bash
 
-
-
 openrc
 
 touch /run/openrc/softlevel
@@ -16,15 +14,12 @@ rc-service mariadb start
 echo "Apllying DataBase"
 echo "CREATE DATABASE wordpress;" | mysql -u root
 
-echo "CREATE USER 'molabhai'@'localhost' identified by 'mysql';" | mysql -u root
+echo "CREATE USER 'molabhai'@'%' identified by 'molabhai';" | mysql -u root
 
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'molabhai'@'localhost';" | mysql -u root
+echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'molabhai'@'%';" | mysql -u root
 
 echo "FLUSH PRIVILEGES;" | mysql -u root
 
-mysql -u root -p"\r" < localhost.sql
- 
-
-#sed -i 's/skip-networking/#skip-networking/g' /etc/my.cnf.d/mariadb-server.cnf
-
 /usr/bin/mysqld_safe --datadir="/var/lib/mysql"
+
+tail -f /dev/null
