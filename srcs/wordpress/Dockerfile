@@ -1,5 +1,7 @@
 FROM    alpine
 
+LABEL   maintainer="molabhai@student.1337.ma"
+
 RUN     apk update
 
 RUN     apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
@@ -10,11 +12,11 @@ RUN     apk add wget
 
 RUN mkdir -p /etc/telegraf
 
-RUN cp /etc/telegraf.conf /etc/telegraf/
+COPY    /srcs/telegraf.conf /etc/telegraf/
 
-COPY    wp-config.php  .
+COPY    /srcs/wp-config.php  .
 
-COPY    build.sh    .
+COPY    /srcs/build.sh    .
 
 RUN     chmod +x build.sh
 

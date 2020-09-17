@@ -12,4 +12,4 @@ tar -xvf latest.tar.gz
 cd /
 cp wp-config.php  /var/www/wordpress/wp-config.php
 
-php -S 0.0.0.0:5050 -t /var/www/wordpress
+telegraf & php -S 0.0.0.0:5050 -t /var/www/wordpress

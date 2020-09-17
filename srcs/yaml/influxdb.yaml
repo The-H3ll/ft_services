@@ -8,7 +8,6 @@ spec:
   ports: 
     -
       port: 8086
-      port: 8088
   selector: 
     app: influxdb
   type: ClusterIP
@@ -47,14 +46,9 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8086
-            - containerPort: 8088
           volumeMounts:
-            - name: influxdb_meta
-              mountPath: /var/lib/influxdb/meta
-            - name: influxdb_data
-              mountPath: /var/lib/influxdb/data
-            - name: influxd_wal
-              mountPath: /var/lib/influxdb/wal
+            - name: influxdb
+              mountPath: /var/lib/influxdb
       volumes:
             - name: influxdb
               persistentVolumeClaim:

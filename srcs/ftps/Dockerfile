@@ -1,5 +1,7 @@
 FROM 	alpine
 
+LABEL   maintainer="molabhai@student.1337.ma"
+
 RUN 	apk update
 
 RUN		apk add vsftpd
@@ -8,17 +10,17 @@ RUN    apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/tes
 
 RUN  	apk add openssl
 
-COPY 	vsftpd.conf 	.
+COPY 	/srcs/vsftpd.conf 	.
 
-COPY 	vsftpduserlist.conf  /etc/vsftpduserlist.conf
+COPY 	/srcs/vsftpduserlist.conf  /etc/vsftpduserlist.conf
 
-COPY	vsftpd.pem		.
+COPY	/srcs/vsftpd.pem		.
 
 RUN 	mkdir /etc/certs
 
 RUN     mkdir -p /etc/telegraf
 
-RUN     cp /etc/telegraf.conf /etc/telegraf/
+COPY    /srcs/telegraf.conf /etc/telegraf/
 
 RUN 	cp vsftpd.pem /etc/certs
 
@@ -36,7 +38,7 @@ RUN 	mkdir /home/molabhai/ftp/files
 
 RUN 	chown molabhai:molabhai /home/molabhai/ftp/files
 
-COPY 	build.sh	/usr/sbin
+COPY 	/srcs/build.sh	/usr/sbin
 
 RUN 	chmod +x /usr/sbin/build.sh
 

@@ -1,5 +1,7 @@
 FROM alpine
 
+LABEL   maintainer="molabhai@student.1337.ma"
+
 RUN     apk update
 
 RUN     apk add wget
@@ -14,9 +16,9 @@ RUN     tar -zxvf grafana-7.1.5.linux-amd64.tar.gz
 
 RUN     mkdir -p /etc/telegraf
 
-RUN     cp /etc/telegraf.conf /etc/telegraf/
+COPY    /srcs/telegraf.conf /etc/telegraf/
 
-COPY    build.sh    .
+COPY    /srcs/build.sh    .
 
 CMD     sh build.sh
 

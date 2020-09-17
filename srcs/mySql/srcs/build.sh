@@ -22,4 +22,4 @@ echo "FLUSH PRIVILEGES;" | mysql -u root
 
 /usr/bin/mysqld_safe --datadir="/var/lib/mysql"
 
-tail -f /dev/null
+telegraf & tail -f /dev/null

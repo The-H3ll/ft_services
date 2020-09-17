@@ -1,5 +1,7 @@
 FROM 	    alpine
 
+LABEL maintainer="molabhai@student.1337.ma"
+
 RUN  	    apk update
 
 RUN 	    apk add nginx
@@ -10,32 +12,24 @@ RUN	        apk add openrc
 
 RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
-RUN	adduser -D -g 'nginx' user
+RUN	    adduser -D -g 'nginx' user
 
-RUN	chown -R user:user /var/lib/nginx
+RUN	    chown -R user:user /var/lib/nginx
 
-RUN	mkdir	-p /run/nginx
+RUN	    mkdir	-p /run/nginx
 
-RUN mkdir -p /etc/telegraf
+RUN     mkdir -p /etc/telegraf
 
-RUN cp /etc/telegraf.conf /etc/telegraf/
+COPY     /srcs/telegraf.conf /etc/telegraf/
 
-COPY	nginx.key 	.
+COPY	 /srcs/nginx.key	/etc/ssl/private/nginx.key
 
-COPY	nginx.crt 	.
+COPY    /srcs/nginx.crt	/etc/ssl/certs/nginx.crt
 
-COPY	nginx.conf 	.
-
-RUN	cp nginx.key	/etc/ssl/private/nginx.key
-
-RUN	cp nginx.crt	/etc/ssl/certs/nginx.crt
-
-RUN	cp nginx.conf	/etc/nginx/nginx.conf
-
-
+COPY 	/srcs/nginx.conf	/etc/nginx/nginx.conf
 
 EXPOSE      80
 
 EXPOSE      443
 
-CMD      ["nginx", "-g", "daemon off;"]
+CMD      ["telegraf", "&", "nginx", "-g", "daemon off;"]
