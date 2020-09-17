@@ -15,7 +15,8 @@ docker build -t ftps_service        ./srcs/ftps
 docker build -t mysql_service       ./srcs/mySql
 docker build -t wordpress_service   ./srcs/wordpress
 docker build -t phpmyadmin_service  ./srcs/phymyadmin
-
+docker build -t grafana_service     ./srcs/grafana
+docker build -t influxdb_service    ./srcs/influxdb
 
 # Installing Metallb
 echo "Installing Metallb"

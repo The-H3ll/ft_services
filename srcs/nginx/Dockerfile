@@ -8,11 +8,17 @@ RUN	        apk add openssl
 
 RUN	        apk add openrc
 
+RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+
 RUN	adduser -D -g 'nginx' user
 
 RUN	chown -R user:user /var/lib/nginx
 
 RUN	mkdir	-p /run/nginx
+
+RUN mkdir -p /etc/telegraf
+
+RUN cp /etc/telegraf.conf /etc/telegraf/
 
 COPY	nginx.key 	.
 
@@ -25,6 +31,8 @@ RUN	cp nginx.key	/etc/ssl/private/nginx.key
 RUN	cp nginx.crt	/etc/ssl/certs/nginx.crt
 
 RUN	cp nginx.conf	/etc/nginx/nginx.conf
+
+
 
 EXPOSE      80
 
