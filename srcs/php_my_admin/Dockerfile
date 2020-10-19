@@ -1,4 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: molabhai <molabhai@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/16 11:20:01 by molabhai          #+#    #+#              #
+#    Updated: 2020/10/18 11:20:15 by molabhai         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 FROM    alpine
+
+LABEL   maintainer="molabhai@student.1337.ma"
 
 RUN     apk update
 
@@ -16,7 +30,7 @@ RUN     tar zxvf phpMyAdmin-5.0.2-all-languages.tar.gz
 
 RUN     mv phpMyAdmin-5.0.2-all-languages/* /var/www/phpmyadmin
 
-COPY    config.inc.php /var/www/phpmyadmin
+COPY    /srcs/config.inc.php /var/www/phpmyadmin
 
 RUN     rm -rf /var/www/phpmyadmin/config.sample.inc.php
 
@@ -24,7 +38,7 @@ RUN mkdir -p /etc/telegraf
 
 RUN cp /etc/telegraf.conf /etc/telegraf/
 
-COPY    build.sh    .
+COPY    /srcs/build.sh    .
 
 CMD     sh build.sh
 

@@ -1,17 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    setup.sh                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: molabhai <molabhai@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/16 11:15:49 by molabhai          #+#    #+#              #
+#    Updated: 2020/10/19 10:03:12 by molabhai         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!	bin/bash
 
+#eval $(docker-machine env default)
+
 echo "Minikube starting..."
-minikube --vm-driver=docker start 
+minikube  start   #by default he pick virtual box
+
+#echo $(minikube ip) | export MINIKUBE_IP=$(minikube ip)
 
 eval $(minikube docker-env)
 
-
-minikube dashboard & 
+echo "Creatin Dashboard"
+minikube dashboard &
 
 # Building Dockerfile
 echo "Building Dockerfiles"
 docker build -t nginx_service       ./srcs/nginx
-docker build -t ftps_service        ./srcs/ftps 
+docker build -t ftps_service        ./srcs/ftps
 docker build -t mysql_service       ./srcs/mySql
 docker build -t wordpress_service   ./srcs/wordpress
 docker build -t phpmyadmin_service  ./srcs/php_my_admin
@@ -27,6 +43,9 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 
 # Creating Pods and Services
 echo "Creating Services and Pods"
+
+#sed /s/ip/$(minikube ip)/g ./srcs/yaml/nginx.yaml
+
 kubectl create -f ./srcs/yaml/configMap.yaml
 kubectl create -f ./srcs/yaml/ftps.yaml
 kubectl create -f ./srcs/yaml/nginx.yaml

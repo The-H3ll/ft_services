@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    phpmyadmin.yaml                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: molabhai <molabhai@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/16 11:21:11 by molabhai          #+#    #+#              #
+#    Updated: 2020/10/17 18:55:04 by molabhai         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 apiVersion: v1
 kind: Service
 metadata: 
@@ -9,10 +21,11 @@ spec:
     -
       port: 5000
       name: phpmyadmin
-      nodePort: 30500
   selector: 
     app: phpmyadmin
   type: LoadBalancer
+  externalIPs:
+   - 192.168.99.124
 ---
 apiVersion: apps/v1
 kind: Deployment

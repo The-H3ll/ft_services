@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    wordpress.yaml                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: molabhai <molabhai@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/16 11:21:39 by molabhai          #+#    #+#              #
+#    Updated: 2020/10/17 18:54:52 by molabhai         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 apiVersion: v1
 kind: Service
 metadata: 
@@ -11,6 +23,8 @@ spec:
   selector: 
     app: wordpress
   type: LoadBalancer
+  externalIPs:
+    - 192.168.99.124
 ---
 apiVersion: apps/v1
 kind: Deployment
