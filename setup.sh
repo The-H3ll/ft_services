@@ -15,9 +15,10 @@
 #eval $(docker-machine env default)
 
 echo "Minikube starting..."
-minikube  start   #by default he pick virtual box
+#minikube  start   #by default he pick virtual box
 
 #echo $(minikube ip) | export MINIKUBE_IP=$(minikube ip)
+
 
 eval $(minikube docker-env)
 
@@ -44,7 +45,6 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 # Creating Pods and Services
 echo "Creating Services and Pods"
 
-#sed /s/ip/$(minikube ip)/g ./srcs/yaml/nginx.yaml
 
 kubectl create -f ./srcs/yaml/configMap.yaml
 kubectl create -f ./srcs/yaml/ftps.yaml

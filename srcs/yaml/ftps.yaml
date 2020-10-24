@@ -20,21 +20,17 @@ spec:
   ports: 
        - port: 21
          name: ftps-port
-         nodePort: 30100
        - port: 20
          name: port-ftps
-         nodePort: 30101
        - port: 31110
          name: ftps-passv-port
-         nodePort: 31110
        - port: 31111
          name: passv-ftps-port
-         nodePort: 31111
   selector: 
     app: ftps
   type: LoadBalancer
   externalIPs:
-   - 192.168.99.124
+   - 192.168.99.125
 
 ---
         

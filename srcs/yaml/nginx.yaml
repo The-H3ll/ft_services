@@ -14,7 +14,7 @@ spec:
     app: nginx
   type: LoadBalancer
   externalIPs:
-    - 192.168.99.129
+    - 192.168.99.125
 ---
 apiVersion: apps/v1
 kind: Deployment

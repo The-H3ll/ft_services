@@ -22,9 +22,13 @@ RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/te
 
 COPY    /srcs/build.sh    .
 
-RUN     mkdir -p /etc/telegraf/
+RUN     mkdir -p /etc/telegraf
+
+COPY    /srcs/influxdb.conf     /etc/influxdb.conf
 
 COPY    /srcs/telegraf.conf /etc/telegraf/
+
+RUN     chmod +x build.sh
 
 CMD     sh build.sh
 

@@ -28,26 +28,12 @@ RUN     mkdir -p /etc/telegraf
 
 COPY    /srcs/telegraf.conf /etc/telegraf/
 
+COPY    /srcs/nginx.conf    /etc/nginx/nginx.conf
+
 COPY    /srcs/wp-config.php  .
 
 COPY    /srcs/build.sh    .
 
-RUN     cd /var/www
+RUN     mkdir /run/nginx
 
-RUN     wget https://wordpress.org/latest.tar.gz
-
-RUN     tar -xvf latest.tar.gz
-
-
-RUN     cd /
-
-RUN     cp wp-config.php  /var/www/wordpress/wp-config.php
-
-RUN     adduser -G www-data -D www-data
-
-RUN     chown -R www-data:www-data /var/www/wordpress
-
-
-RUN     php-fpm7
-
-CMD      ["nginx", "-g", "daemon off;"]
+CMD      sh build.sh

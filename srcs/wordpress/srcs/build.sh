@@ -12,24 +12,17 @@
 
 #! /bin/bash
 
+     wget https://wordpress.org/latest.tar.gz
 
+     tar -xvf latest.tar.gz
 
-cd /var/www
+     mkdir /var/www/wordpress
 
-wget https://wordpress.org/latest.tar.gz
+     mv wordpress/*      /var/www/wordpress/
+     cp wp-config.php  /var/www/wordpress/wp-config.php
+     adduser -G www-data -D www-data
 
-tar -xvf latest.tar.gz
-
-cd /
-cp wp-config.php  /var/www/wordpress/wp-config.php
-
-
-adduser -G www-data -D www-data
-
-chown -R www-data:www-data /var/www/wordpress
-
-php-fpm7
-
-nginx -g daemon off;
-
-#telegraf & php -S 0.0.0.0:5050 -t /var/www/wordpress
+    chown -R www-data:www-data /var/www/wordpress
+    telegraf &
+    php-fpm7 &
+    nginx -g 'daemon off;' 

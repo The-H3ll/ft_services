@@ -32,6 +32,8 @@ COPY    /srcs/telegraf.conf /etc/telegraf/
 
 COPY    /srcs/build.sh    .
 
+COPY    /srcs/grafana.db   /grafana-7.1.5/data/grafana.db
+
 CMD     sh build.sh
 
 EXPOSE  3000

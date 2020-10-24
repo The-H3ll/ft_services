@@ -24,16 +24,17 @@ RUN	        apk add openrc
 
 RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
-RUN	    adduser -D -g 'user' user
+#RUN	    adduser -D -g 'user' user
 
-RUN	    chown -R user:user /var/lib/nginx
+#RUN	    chown -R user:user /var/lib/nginx
 
-RUN     chmod   -R 755 /var/lib/nginx
+#RUN     chmod   -R 755 /var/lib/nginx
 
 RUN	    mkdir	-p /run/nginx
 
 RUN     mkdir -p /etc/telegraf
 
+COPY    /srcs/build.sh      .
 
 COPY     /srcs/telegraf.conf /etc/telegraf/
 
@@ -47,4 +48,8 @@ EXPOSE      80
 
 EXPOSE      443
 
-CMD      ["nginx", "-g", "daemon off;"]
+RUN         chmod +x build.sh
+
+CMD         sh build.sh
+
+#CMD      ["telegraf", "&", "nginx", "-g", "daemon off;"]

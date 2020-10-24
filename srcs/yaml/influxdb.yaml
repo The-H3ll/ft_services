@@ -33,7 +33,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 2.5Gi
+      storage: 20Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -60,7 +60,7 @@ spec:
             - containerPort: 8086
           volumeMounts:
             - name: influxdb
-              mountPath: /var/lib/influxdb
+              mountPath: /var/lib/influxdb/data
       volumes:
             - name: influxdb
               persistentVolumeClaim:
