@@ -1,5 +1,4 @@
 # /bin/sh
 
 
-nginx
-telegraf
+supervisord   -c /etc/supervisord.conf  & tail -f /dev/null

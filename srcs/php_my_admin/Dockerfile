@@ -22,6 +22,8 @@ RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edg
 
 RUN     apk add nginx
 
+RUN     apk add supervisor
+
 RUN     mkdir -p /var/www/phpmyadmin
 
 RUN     cd /var/www/phpmyadmin
@@ -29,6 +31,8 @@ RUN     cd /var/www/phpmyadmin
 COPY    /srcs/nginx.conf    /etc/nginx/nginx.conf
 
 COPY    /srcs/config.inc.php .
+
+COPY    /srcs/supervisord.conf  /etc/supervisord.conf
 
 RUN     mkdir -p /etc/telegraf
 

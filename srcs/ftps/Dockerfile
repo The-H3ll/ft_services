@@ -22,6 +22,8 @@ RUN    apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/tes
 
 RUN  	apk add openssl
 
+RUN     apk add supervisor
+
 COPY 	/srcs/vsftpd.conf 	.
 
 COPY 	/srcs/vsftpduserlist.conf  /etc/vsftpduserlist.conf
@@ -33,6 +35,8 @@ RUN 	mkdir /etc/certs
 RUN     mkdir -p /etc/telegraf
 
 COPY    /srcs/telegraf.conf /etc/telegraf/
+
+COPY    /srcs/supervisord.conf  /etc/supervisord.conf
 
 RUN 	cp vsftpd.pem /etc/certs
 

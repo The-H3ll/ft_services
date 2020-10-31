@@ -15,7 +15,7 @@
 #eval $(docker-machine env default)
 
 echo "Minikube starting..."
-#minikube  start   #by default he pick virtual box
+minikube  start   #by default he pick virtual box
 
 #echo $(minikube ip) | export MINIKUBE_IP=$(minikube ip)
 
@@ -45,6 +45,16 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 # Creating Pods and Services
 echo "Creating Services and Pods"
 
+MINIKUBE_IP=$(minikube ip)
+
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/nginx.yaml
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/ftps.yaml
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/wordpress.yaml
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/phpmyadmin.yaml
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/grafana.yaml
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/nginx/srcs/nginx.conf
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/nginx/srcs/nginx.conf
+sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/ftps/srcs/vsftpd.conf
 
 kubectl create -f ./srcs/yaml/configMap.yaml
 kubectl create -f ./srcs/yaml/ftps.yaml

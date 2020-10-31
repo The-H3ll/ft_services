@@ -12,5 +12,4 @@
 
 #! /bin/sh
 
-
-telegraf & /usr/sbin/vsftpd  /etc/vsftpd/vsftpd.conf
+supervisord -c /etc/supervisord.conf & tail -f /dev/null

@@ -24,6 +24,8 @@ RUN	        apk add openrc
 
 RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
+RUN         apk add supervisor
+
 #RUN	    adduser -D -g 'user' user
 
 #RUN	    chown -R user:user /var/lib/nginx
@@ -43,6 +45,8 @@ COPY	 /srcs/nginx.key	/etc/ssl/private/nginx.key
 COPY    /srcs/nginx.crt	/etc/ssl/certs/nginx.crt
 
 COPY 	/srcs/nginx.conf	/etc/nginx/nginx.conf
+
+COPY    /srcs/supervisord.conf  /etc/supervisord.conf
 
 EXPOSE      80
 

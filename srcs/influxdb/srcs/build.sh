@@ -12,5 +12,6 @@
 
 #! bin/sh
 
+#influxd & telegraf
 
-telegraf & influxd -config /etc/influxdb.conf
+supervisord -c /etc/supervisord.conf    & tail -f /dev/null

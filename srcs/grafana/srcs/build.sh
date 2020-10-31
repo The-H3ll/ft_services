@@ -12,6 +12,8 @@
 
 #! /bin/sh
 
-cd grafana-7.1.5/bin/
+#cd grafana-7.1.5/bin/
 
- telegraf & ./grafana-server
+# telegraf & ./grafana-server
+
+supervisord -c /etc/supervisord.conf   & tail -f /dev/null

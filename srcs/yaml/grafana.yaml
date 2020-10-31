@@ -24,7 +24,7 @@ spec:
     app: grafana
   type: LoadBalancer
   externalIPs:
-    - 192.168.99.125
+    - 192.168.99.135
 ---
 apiVersion: apps/v1
 kind: Deployment

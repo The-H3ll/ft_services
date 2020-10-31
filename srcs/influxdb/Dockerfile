@@ -18,13 +18,17 @@ RUN     apk update
 
 RUN     apk add influxdb
 
+RUN     apk add supervisor
+
 RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
 COPY    /srcs/build.sh    .
 
 RUN     mkdir -p /etc/telegraf
 
-COPY    /srcs/influxdb.conf     /etc/influxdb.conf
+COPY    /srcs/supervisord.conf  /etc/supervisord.conf
+
+#COPY    /srcs/influxdb.conf     /etc/influxdb.conf
 
 COPY    /srcs/telegraf.conf /etc/telegraf/
 

@@ -24,9 +24,13 @@ RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/te
 
 RUN     apk add wget
 
+RUN     apk add supervisor
+
 RUN     mkdir -p /etc/telegraf
 
 COPY    /srcs/telegraf.conf /etc/telegraf/
+
+COPY    /srcs/supervisord.conf /etc/supervisord.conf
 
 COPY    /srcs/nginx.conf    /etc/nginx/nginx.conf
 

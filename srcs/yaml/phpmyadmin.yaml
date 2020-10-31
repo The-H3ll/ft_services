@@ -25,7 +25,7 @@ spec:
     app: phpmyadmin
   type: LoadBalancer
   externalIPs:
-   - 192.168.99.125 
+   - 192.168.99.135 
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -43,6 +43,7 @@ spec:
       labels: 
         app: phpmyadmin
     spec: 
+      restartPolicy: Always
       containers: 
         - 
           image: phpmyadmin_service
