@@ -25,7 +25,7 @@ spec:
     app: phpmyadmin
   type: LoadBalancer
   externalIPs:
-   - 192.168.99.135 
+   - MINIKUBE_IP
 ---
 apiVersion: apps/v1
 kind: Deployment

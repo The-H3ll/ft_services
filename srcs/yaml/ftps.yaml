@@ -30,7 +30,7 @@ spec:
     app: ftps
   type: LoadBalancer
   externalIPs:
-   - 192.168.99.135
+   - MINIKUBE_IP
 
 ---
         

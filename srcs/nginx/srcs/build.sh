@@ -1,4 +1,16 @@
 # /bin/sh
 
 
-supervisord   -c /etc/supervisord.conf  & tail -f /dev/null
+openrc
+
+touch /run/openrc/softlevel
+
+rc-update add sshd
+
+ adduser -D admin
+
+  echo admin:admin | chpasswd
+
+/etc/init.d/sshd start
+
+supervisord   -c /etc/supervisord.conf

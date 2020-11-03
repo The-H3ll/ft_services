@@ -10,11 +10,13 @@ spec:
       name: http
     - port: 443
       name: https
+    - port: 22
+      name: ssh
   selector: 
     app: nginx
   type: LoadBalancer
   externalIPs:
-    - 192.168.99.135
+    - MINIKUBE_IP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,3 +42,4 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 443
+            - containerPort: 22 

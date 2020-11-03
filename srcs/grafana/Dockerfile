@@ -18,7 +18,7 @@ RUN     apk update
 
 RUN     apk add wget
 
-RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+#RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
 RUN     apk add libc6-compat
 
@@ -33,6 +33,8 @@ RUN     mkdir -p /etc/telegraf
 COPY    /srcs/telegraf.conf /etc/telegraf/
 
 COPY    /srcs/supervisord.conf  /etc/supervisord.conf
+
+COPY    /srcs/run.sh        .
 
 COPY    /srcs/build.sh    .
 

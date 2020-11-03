@@ -1,0 +1,6 @@
+
+Port    22
+
+PermitRootLogin yes
+
+PubKeyAuthentication yes

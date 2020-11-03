@@ -20,17 +20,12 @@ RUN 	    apk add nginx
 
 RUN	        apk add openssl
 
-RUN	        apk add openrc
+RUN	        apk add openssh
 
-RUN         apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+RUN	        apk add openrc
 
 RUN         apk add supervisor
 
-#RUN	    adduser -D -g 'user' user
-
-#RUN	    chown -R user:user /var/lib/nginx
-
-#RUN     chmod   -R 755 /var/lib/nginx
 
 RUN	    mkdir	-p /run/nginx
 

@@ -20,7 +20,7 @@ RUN     apk add influxdb
 
 RUN     apk add supervisor
 
-RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+#RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 
 COPY    /srcs/build.sh    .
 
