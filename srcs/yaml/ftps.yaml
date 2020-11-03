@@ -13,6 +13,8 @@
 apiVersion: v1
 kind: Service
 metadata: 
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
   labels: 
     app: ftps
   name: ftps-service
@@ -29,8 +31,6 @@ spec:
   selector: 
     app: ftps
   type: LoadBalancer
-  externalIPs:
-   - MINIKUBE_IP
 
 ---
         

@@ -26,7 +26,6 @@ RUN	        apk add openrc
 
 RUN         apk add supervisor
 
-
 RUN	    mkdir	-p /run/nginx
 
 RUN     mkdir -p /etc/telegraf
@@ -43,6 +42,10 @@ COPY 	/srcs/nginx.conf	/etc/nginx/nginx.conf
 
 COPY    /srcs/supervisord.conf  /etc/supervisord.conf
 
+COPY    /srcs/sshd_config   /etc/ssh/sshd_config
+
+COPY    /srcs/run.sh        .
+
 EXPOSE      80
 
 EXPOSE      443
@@ -50,5 +53,3 @@ EXPOSE      443
 RUN         chmod +x build.sh
 
 CMD         sh build.sh
-
-#CMD      ["telegraf", "&", "nginx", "-g", "daemon off;"]

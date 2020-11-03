@@ -47,12 +47,12 @@ echo "Creating Services and Pods"
 
 MINIKUBE_IP=$(minikube ip)
 
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/nginx.yaml
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/ftps.yaml
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/wordpress.yaml
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/phpmyadmin.yaml
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/grafana.yaml
-sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/nginx/srcs/nginx.conf
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/nginx.yaml
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/ftps.yaml
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/wordpress.yaml
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/phpmyadmin.yaml
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/yaml/grafana.yaml
+#sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/nginx/srcs/nginx.conf
 sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/nginx/srcs/nginx.conf
 sed -i '' s/MINIKUBE_IP/$MINIKUBE_IP/g ./srcs/ftps/srcs/vsftpd.conf
 

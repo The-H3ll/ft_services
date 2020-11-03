@@ -26,6 +26,8 @@ COPY    /srcs/build.sh    .
 
 COPY    /srcs/my.cnf     /etc/mysql/my.cnf
 
+COPY    /srcs/mysql-service.sql /usr/share/mariadb/
+
 RUN     chmod +x build.sh
 
 CMD     sh build.sh
