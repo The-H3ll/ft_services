@@ -11,6 +11,7 @@ echo "starting mariadb"
 rc-service mariadb start
 
 echo "Apllying DataBase"
+
 echo "CREATE DATABASE wordpress;" | mysql -u root
 
 echo "CREATE USER 'molabhai'@'%' identified by 'molabhai';" | mysql -u root
@@ -18,6 +19,8 @@ echo "CREATE USER 'molabhai'@'%' identified by 'molabhai';" | mysql -u root
 echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'molabhai'@'%';" | mysql -u root
 
 echo "FLUSH PRIVILEGES;" | mysql -u root
+
+mysql -u root wordpress  < mysql-service.sql
 
 /usr/bin/mysqld_safe --datadir="/var/lib/mysql"
 
